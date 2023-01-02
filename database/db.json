@@ -2,14 +2,14 @@
   "projects": [
     {
       "id": 1,
-      "title": "project title1",
+      "title": "project title1 update",
       "detail": "project detail 1",
-      "complete": false
+      "complete": true
     },
     {
-      "title": "Est aut perspiciatis",
-      "detail": "Et pariatur Illo no",
-      "complete": false,
+      "title": "Est aut perspiciatis edit",
+      "detail": "htetko ko update detail",
+      "complete": true,
       "id": 2
     }
   ]
