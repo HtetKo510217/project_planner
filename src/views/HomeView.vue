@@ -2,7 +2,7 @@
   <div class="home">
    <h1>home page</h1>
    <div v-for="project in projects" :key="project.id">
-    <SingleProject :project="project" @delete="deleteProject"/>
+    <SingleProject :project="project" @delete="deleteProject" @complete="completeProject"/>
    </div>
   </div>
 </template>
@@ -25,6 +25,12 @@ export default {
         return project.id != id;
       });
       console.log(this.projects);
+    },
+    completeProject(id) {
+      const completeProject = this.projects.find(project => {
+        return project.id === id;
+      })
+      completeProject.complete = !completeProject.complete;
     }
   },
   mounted () {

@@ -1,5 +1,5 @@
 <template>
-  <div class="project">
+  <div class="project" :class="{complete:project.complete}">
     <div class="col">
         <h3 @click="showDetail = !showDetail">{{project.title}}</h3>
         <div>
@@ -9,7 +9,7 @@
             <span class="material-icons">
                 edit
             </span>
-            <span class="material-icons">
+            <span class="material-icons" @click="doneProject">
                 done
             </span>
         </div>
@@ -37,6 +37,27 @@ export default {
            .catch((err)=> {
             console.log(err);
            });
+        },
+        doneProject () {
+            const completeRoute = this.api + this.project.id;
+            fetch(completeRoute,{
+                method:'PATCH',
+                headers:{
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify(
+                    {
+                        complete : !this.project.complete
+                    }
+                )
+            })
+            .then(()=> {
+                this.$emit('complete',this.project.id);
+            })
+            .catch((err)=> {
+                console.log(err);
+            })
+            
         }
     }
 }
@@ -64,5 +85,8 @@ export default {
         margin-left: 10px;
         padding: 4px;
         cursor: pointer;
+    }
+    .complete {
+        border-left-color: green;
     }
 </style>
